@@ -17,9 +17,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 const app=express();
 const PORT=3000;
 
-app.listen(PORT,()=>{
-    console.log(`server started at PORT : ${PORT} !!! `);
-});
+
 app.use(express.json());
 app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
@@ -33,6 +31,10 @@ app.use((err,req,res,next)=>{
     statusCode,
     message,
   })
+});
+
+app.listen(PORT,()=>{
+    console.log(`server started at PORT : ${PORT} !!! `);
 });
 
 
