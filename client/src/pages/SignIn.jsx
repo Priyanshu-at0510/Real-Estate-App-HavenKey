@@ -63,7 +63,7 @@ export const SignIn = () => {
       <div className='flex gap-2 mt-5'>
         <p className=''>Don't Have an account ?</p>
         <Link to={"/SignUp"}>
-        <span className='text-blue-700'>Sign Un</span>
+        <span className='text-blue-700'>Sign Up</span>
         </Link>
       </div>
       {error && <p className='text-red-500 m '>{error}</p> }
