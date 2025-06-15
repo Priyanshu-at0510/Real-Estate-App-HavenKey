@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { useNavigate ,Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart,signInSuccess,signInFailure,clearError } from '../redux/user/userSlice';
+import { OAuth } from '../components/OAuth';
 export const SignIn = () => {
 
   const dispatch=useDispatch();
   const {loading,error}=useSelector((state)=>state.user);
   const navigate=useNavigate();
   const [formData,setFormData]=useState({});
+
+  // Clear error when component mounts
+  useEffect(() => {
+    dispatch(clearError());
+  }, []);
   
   const handleChange=(e)=>{
     setFormData({...formData,[e.target.id]:e.target.value});
@@ -62,6 +68,7 @@ export const SignIn = () => {
         <button disabled={loading} className='bg-slate-700 text-white p-2 cursor-pointer rounded-lg uppercase hover:opacity-95 disabled:opacity-0 '>
           {loading ? "Loading...":"Sign In"}
         </button>
+        <OAuth/>
       </form>
       <div className='flex gap-2 mt-5'>
         <p className=''>Don't Have an account ?</p>
